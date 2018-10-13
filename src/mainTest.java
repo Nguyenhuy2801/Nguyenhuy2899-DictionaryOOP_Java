@@ -7,5 +7,4 @@ public class mainTest
     {
         new cmdGUI();
     }
-
-}1
+}

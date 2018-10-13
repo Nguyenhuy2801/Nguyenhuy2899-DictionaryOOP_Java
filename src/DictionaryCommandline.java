@@ -31,7 +31,7 @@ public class DictionaryCommandline extends DictionaryMangement
         int i = 0;
         for (Word word : container)
         {
-            if (word.getWordTarget().contains(search))
+            if (word.getWordTarget().substring(0, search.length()).equals(search))
             {
                 i++;
                 if (i == 1)
