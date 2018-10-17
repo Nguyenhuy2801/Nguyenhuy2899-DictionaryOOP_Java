@@ -98,4 +98,4 @@ allow	cho phep, de cho
 ally	nuoc dong minh, lien minh; lien ket, lien minh, ket thong gia
 alone	co don, mot minh
 along	doc theo, theo; theo chieu dai, suot theo
-an apple	mot qua tao
+apple	qua tao
