@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.lang.*;
+import java.util.Collection;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
@@ -22,20 +23,27 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
  * @author nguyenhuy
  */
 public class DicFrame extends javax.swing.JFrame {
+
     DictionaryCommandline dic = new DictionaryCommandline();
     DefaultListModel<String> dlm = new DefaultListModel<>();
+    DefaultListModel<String> hl = new DefaultListModel<>();
     DefaultListModel<String> tmpList = new DefaultListModel<>();
+
     /**
      * Creates new form DicFrame
+     *
      * @throws java.io.FileNotFoundException
      */
     public DicFrame() throws FileNotFoundException {
         initComponents();
-        for(Word ele : Dictionary.container) {
+        this.setLocationRelativeTo(null);
+        dic.dictionaryAdvanced();
+        for (Word ele : Dictionary.container) {
             dlm.addElement(ele.getWordTarget());
         }
         TargetList.setModel(dlm);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,22 +67,25 @@ public class DicFrame extends javax.swing.JFrame {
         Speak = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        GGT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dictionary");
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(900, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setToolTipText("");
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 1000));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-delete-40.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-time-machine-20.png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 40, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 30, 30));
 
         TranButton.setBackground(new java.awt.Color(255, 255, 255));
         TranButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-google-translate-40.png")); // NOI18N
@@ -118,13 +129,20 @@ public class DicFrame extends javax.swing.JFrame {
                 ExitButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(ExitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 420, 60, 40));
+        jPanel1.add(ExitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, 60, 40));
 
-        NewText.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        NewText.setText("Hãy nhập tại đây");
+        NewText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        NewText.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        NewText.setText("Hãy nhập từ tại đây");
+        NewText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         NewText.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 NewTextMouseClicked(evt);
+            }
+        });
+        NewText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewTextActionPerformed(evt);
             }
         });
         NewText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -132,12 +150,11 @@ public class DicFrame extends javax.swing.JFrame {
                 NewTextKeyReleased(evt);
             }
         });
-        jPanel1.add(NewText, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 282, 60));
+        jPanel1.add(NewText, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 282, 70));
 
         ExplainLable.setBackground(new java.awt.Color(255, 255, 255));
         ExplainLable.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ExplainLable.setForeground(new java.awt.Color(51, 0, 51));
-        ExplainLable.setText("Explain");
         ExplainLable.setOpaque(true);
         ExplainLable.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
@@ -148,7 +165,7 @@ public class DicFrame extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jPanel1.add(ExplainLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 250, 70));
+        jPanel1.add(ExplainLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 250, 70));
 
         TargetList.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentRemoved(java.awt.event.ContainerEvent evt) {
@@ -171,7 +188,7 @@ public class DicFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TargetList);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 220, 270));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 220, 270));
 
         DeleteButton.setBackground(new java.awt.Color(255, 255, 255));
         DeleteButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-trash-40.png")); // NOI18N
@@ -201,9 +218,17 @@ public class DicFrame extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Tiếng Việt");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(514, 30, 80, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 80, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 480));
+        GGT.setText("GGT");
+        GGT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GGTActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GGT, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -212,6 +237,7 @@ public class DicFrame extends javax.swing.JFrame {
         try {
             AddFrame abc = new AddFrame();
             abc.setVisible(true);
+            tmpList.clear();
             // TODO add your handling code here:
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DicFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -231,7 +257,20 @@ public class DicFrame extends javax.swing.JFrame {
     private void TranButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TranButtonActionPerformed
         TranButton.setToolTipText("Dịch");
         if (!NewText.getText().equals("")) {
+            try {
+            ExplainLable.setText(GoogleTranslate.translate("vi",NewText.getText()));
+            // TODO add your handling code here:
+        } catch (IOException ex) {
             ExplainLable.setText(dic.binaryLookup(NewText.getText(), 0, Dictionary.container.size()));
+            JOptionPane.showMessageDialog(rootPane,"Vui lòng kết nối mạng");
+        }    
+            for(int i = 0; i < hl.size(); i++){
+                if(hl.get(i).equals(NewText.getText())){
+                    hl.remove(i);
+                    break;
+                }
+            }
+            hl.addElement(NewText.getText());
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_TranButtonActionPerformed
@@ -242,34 +281,35 @@ public class DicFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NewText.setText("");
+//        NewText.setText("");
+        TargetList.setModel(hl);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeButtonActionPerformed
-            ChangeFrame abc = null;
+        ChangeFrame abc = null;
         try {
             abc = new ChangeFrame();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DicFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-            abc.setVisible(true);
-            // TODO add your handling code here:
+        abc.setVisible(true);
+        // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_ChangeButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        if(!NewText.getText().equals("")){
-            if(dic.removeSingleWordFromCommanline(NewText.getText())){
-                JOptionPane.showMessageDialog(rootPane, "Bạn vừa xóa từ " + NewText.getText());
-            }
-            else{
-                JOptionPane.showMessageDialog(rootPane, "Không có từ " + NewText.getText()); 
-            }
-            try {
-                dic.dictionaryExportToFile();
-            } catch (IOException ex) {
-                Logger.getLogger(DicFrame.class.getName()).log(Level.SEVERE, null, ex);
+        if (dic.binaryLookup(NewText.getText(), 0, Dictionary.container.size()).equals("Không tìm thấy từ")) {
+            JOptionPane.showMessageDialog(null, "Từ này không có trong từ điển");
+        } else {
+            int click = JOptionPane.showConfirmDialog(null, "Bạn muôn xóa từ " + NewText.getText());
+            if (click == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "Xóa từ " + NewText.getText() + " khỏi từ điển");
+                dic.removeSingleWordFromCommanline(NewText.getText());
+                NewText.setText("");
+                ExplainLable.setText("");
+            } else if (click == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Không xóa");
             }
         }
         // TODO add your handling code here:
@@ -296,49 +336,65 @@ public class DicFrame extends javax.swing.JFrame {
 //        voice.allocate();
 //        voice.speak(NewText.getText());
         // TODO add your handling code here:
-        if (TargetList.isSelectionEmpty()) {
+        if (NewText.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "chọn một từ");
         } else {
             Synthesiser synthesiser = new Synthesiser();
             Thread thread = new Thread(() -> {
                 try {
-                    AdvancedPlayer player = new AdvancedPlayer(synthesiser.getMP3Data(TargetList.getSelectedValue()));
+                    AdvancedPlayer player = new AdvancedPlayer(synthesiser.getMP3Data(NewText.getText()));
                     player.play();
                 } catch (IOException | JavaLayerException e) {
-                    JOptionPane.showMessageDialog(rootPane, "Lỗi");
+                    JOptionPane.showMessageDialog(rootPane, "Vui lòng kết nối mạng");
                 }
             });
- 
+
             thread.setDaemon(false);
             thread.start();
         }
     }//GEN-LAST:event_SpeakActionPerformed
 
     private void TargetListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TargetListMouseClicked
+        NewText.setText(TargetList.getSelectedValue());
         ExplainLable.setText(dic.binaryLookup(TargetList.getSelectedValue(), 0, Dictionary.container.size()));
         // TODO add your handling code here:
     }//GEN-LAST:event_TargetListMouseClicked
 
     private void NewTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NewTextKeyReleased
-        if(NewText.getText().equals("")){
+        if (NewText.getText().equals("")) {
             dlm.clear();
-            for(Word ele : Dictionary.container) {
-            dlm.addElement(ele.getWordTarget());
-        }
-        TargetList.setModel(dlm);
-        }
-        else{
-        tmpList.clear();
-        for (Word word : Dictionary.container) {
-            if (!word.getWordTarget().contains(NewText.getText().toLowerCase())) {
-            } else {
-                tmpList.addElement(word.getWordTarget());
+            for (Word ele : Dictionary.container) {
+                dlm.addElement(ele.getWordTarget());
             }
-        }
-        TargetList.setModel(tmpList);
+            TargetList.setModel(dlm);
+        } else {
+            tmpList.clear();
+            dlm.clear();
+            for (Word word : Dictionary.container) {
+                if (!word.getWordTarget().contains(NewText.getText().toLowerCase())) {
+                } else {
+                    tmpList.addElement(word.getWordTarget());
+                }
+            }
+            TargetList.setModel(tmpList);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_NewTextKeyReleased
+
+    private void NewTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NewTextActionPerformed
+
+    private void GGTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GGTActionPerformed
+        if(!NewText.getText().equals("")){
+        try {
+            ExplainLable.setText(GoogleTranslate.translate("vi",NewText.getText()));
+            // TODO add your handling code here:
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane,"Vui lòng kết nối mạng");
+        }
+    }
+    }//GEN-LAST:event_GGTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,7 +416,7 @@ public class DicFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DicFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -381,6 +437,7 @@ public class DicFrame extends javax.swing.JFrame {
     private javax.swing.JButton DeleteButton;
     private javax.swing.JButton ExitButton;
     private javax.swing.JLabel ExplainLable;
+    private javax.swing.JButton GGT;
     private javax.swing.JTextField NewText;
     private javax.swing.JButton Speak;
     private javax.swing.JList<String> TargetList;

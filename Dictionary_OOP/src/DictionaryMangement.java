@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class DictionaryMangement extends Dictionary {
+public class DictionaryMangement  {
 
     void insertSingleWordFromCommanline(String wordTarget, String wordExplain)
     {
@@ -15,7 +15,7 @@ public class DictionaryMangement extends Dictionary {
         newWord.setWordExlain(wordExplain.toLowerCase());
         newWord.setWordTarget(wordTarget.toLowerCase());
         //add tu moi
-        this.container.add(newWord);
+        Dictionary.container.add(newWord);
     }
 
     void insertFromFileDemo(String fullLine) throws FileNotFoundException {
@@ -28,7 +28,7 @@ public class DictionaryMangement extends Dictionary {
         newWord.setWordExlain(split[1]);
         newWord.setWordTarget(split[0]);
         //add tu moi
-        this.container.add(newWord);
+        Dictionary.container.add(newWord);
         sc.close();
     }
 
@@ -46,21 +46,21 @@ public class DictionaryMangement extends Dictionary {
             newWord.setWordExlain(split[1].toLowerCase());
             newWord.setWordTarget(split[0].toLowerCase());
             //add tu moi
-            this.container.add(newWord);
+            Dictionary.container.add(newWord);
         }
         sc.close();
-        Collections.sort(container);
+        Collections.sort(Dictionary.container);
     }
 
     String dictionaryLookUp(String search) {
         search = search.toLowerCase();
         int i = 0;
-        for (Word word : container) {
+        for (Word word : Dictionary.container) {
             if (word.getWordTarget().equals(search)) {
                 return word.getWordExlain();
             }
         }
-        return null;
+        return "";
     }
     
     String binaryLookup (String search, int low, int high)
@@ -68,22 +68,40 @@ public class DictionaryMangement extends Dictionary {
         
         if( high >= low){
             int mid = low + (high - low) / 2;
-            if (search.compareTo(container.get(mid).getWordTarget()) == 0)
-                return container.get(mid).getWordExlain();
-            if (search.compareTo(container.get(mid).getWordTarget()) > 0)
+            if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) == 0)
+                return Dictionary.container.get(mid).getWordExlain();
+            if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) > 0)
                 return binaryLookup(search, mid + 1, high);
-            if (search.compareTo(container.get(mid).getWordTarget()) < 0)
+            if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) < 0)
                 return binaryLookup(search, low, mid - 1);
         }
         
-        return "khong tim thay tu";
+        return "Không tìm thấy từ";
 
         
     }
+    String binaryAdd (String search, int low, int high)
+    {
+        
+        if( high >= low){
+            int mid = low + (high - low) / 2;
+            if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) == 0)
+                return Dictionary.container.get(mid).getWordExlain();
+            if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) > 0)
+                return binaryLookup(search, mid + 1, high);
+            if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) < 0)
+                return binaryLookup(search, low, mid - 1);
+        }
+        
+        return "Không tìm thấy từ";
+
+        
+    }
+    
     String dictionarySearcher(String search) {
 
         search = search.toLowerCase();
-        for (Word word : container) {
+        for (Word word : Dictionary.container) {
             if (!word.getWordTarget().contains(search)) {
             } else {
                 return word.getWordExlain();
@@ -93,8 +111,8 @@ public class DictionaryMangement extends Dictionary {
     }
     // Hàm Nhập dữ liệu từ container vào file
     void dictionaryExportToFile() throws IOException {
-        FileWriter fileWriter = new FileWriter("dictionary.txt", false);
-        for (Word oldWord : container) {
+        FileWriter fileWriter = new FileWriter("dictionary.txt");
+        for (Word oldWord : Dictionary.container) {
             fileWriter.write(oldWord.getWordTarget() + "\t" + oldWord.getWordExlain() + "\n");
         }
         fileWriter.close();
@@ -102,19 +120,15 @@ public class DictionaryMangement extends Dictionary {
      Boolean removeSingleWordFromCommanline(String search)
     {
         search = search.toLowerCase();
-        for (Word word : container)
+        for (Word word : Dictionary.container)
         {
             if (word.getWordTarget().equals(search))
             {
-                container.remove(word);
+                Dictionary.container.remove(word);
                 System.out.println("da xoa tu " + search);
                 return true;
             }
         }
-//        if (!found)
-//        {
-//            System.out.println("khong co tu " + search);
-//        }
         return false;
     }
 
@@ -125,7 +139,7 @@ public class DictionaryMangement extends Dictionary {
         Scanner sc = new Scanner(System.in);
         search = search.toLowerCase();
         boolean found  = false;
-        for (Word word : container)
+        for (Word word : Dictionary.container)
         {
             if (word.getWordTarget().equals(search))
             {

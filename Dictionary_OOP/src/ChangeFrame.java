@@ -23,6 +23,7 @@ public class ChangeFrame extends javax.swing.JFrame {
      */
     public ChangeFrame() throws FileNotFoundException {
         initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     /**

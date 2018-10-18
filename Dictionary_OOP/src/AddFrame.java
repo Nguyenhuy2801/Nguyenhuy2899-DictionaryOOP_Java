@@ -23,6 +23,7 @@ public class AddFrame extends javax.swing.JFrame {
      */
     public AddFrame() throws FileNotFoundException {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -98,10 +99,10 @@ public class AddFrame extends javax.swing.JFrame {
         jLabel1.setText("Tiếng Việt");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
 
-        BackGround.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Pictures\\caytre.jpg")); // NOI18N
+        BackGround.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\b1.jpg")); // NOI18N
         BackGround.setText("add");
         BackGround.setOpaque(true);
-        getContentPane().add(BackGround, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, -1));
+        getContentPane().add(BackGround, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 640, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -118,16 +119,16 @@ public class AddFrame extends javax.swing.JFrame {
 
     private void AddNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewActionPerformed
         if(!Target.getText().equals("") && !Explain.getText().equals("")){
+            if (!Adder.dictionaryLookUp(Target.getText()).equals("")) {
+                JOptionPane.showMessageDialog(null, "Từ này đã có trong từ điển");
+            }
+            else{
                 Adder.insertSingleWordFromCommanline(Target.getText(), Explain.getText());
                 JOptionPane.showMessageDialog(rootPane, "Bạn vừa thêm từ " + Target.getText());
+            }       
         }
         else{
             JOptionPane.showMessageDialog(rootPane,"Yêu cầu nhập đủ cả từ và nghĩa");
-        }
-        try {
-            Adder.dictionaryExportToFile();
-        } catch (IOException ex) {
-            Logger.getLogger(AddFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_AddNewActionPerformed

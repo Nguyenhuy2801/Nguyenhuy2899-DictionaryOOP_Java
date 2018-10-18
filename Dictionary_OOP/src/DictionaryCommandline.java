@@ -7,10 +7,10 @@ public class DictionaryCommandline extends DictionaryMangement
     {
         int i = 1;
         System.out.printf("%-5s| %-20s | Vietnamese\n", "No", "English");
-        while (i <= this.container.size())
+        while (i <= Dictionary.container.size())
         {
             int j = i - 1;
-            System.out.printf("%-5d| %-20s | %s\n", i, this.container.get(j).getWordTarget().trim(), this.container.get(j).getWordExlain().trim());
+            System.out.printf("%-5d| %-20s | %s\n", i, Dictionary.container.get(j).getWordTarget().trim(), Dictionary.container.get(j).getWordExlain().trim());
             i++;
         }
     }
@@ -25,8 +25,8 @@ public class DictionaryCommandline extends DictionaryMangement
      
     }
 
-    public DictionaryCommandline() throws FileNotFoundException {
-        dictionaryAdvanced();
+    public DictionaryCommandline() throws FileNotFoundException{
+        
     }
 
 }
