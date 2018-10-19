@@ -80,22 +80,34 @@ public class DictionaryMangement  {
 
         
     }
-    String binaryAdd (String search, int low, int high)
-    {
-        
+    Boolean binarySeach (String search, int low, int high)
+    {    
         if( high >= low){
             int mid = low + (high - low) / 2;
             if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) == 0)
-                return Dictionary.container.get(mid).getWordExlain();
+                return true;
             if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) > 0)
-                return binaryLookup(search, mid + 1, high);
+                return binarySeach(search, mid + 1, high);
             if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) < 0)
-                return binaryLookup(search, low, mid - 1);
+                return binarySeach(search, low, mid - 1);
         }
-        
-        return "Không tìm thấy từ";
-
-        
+        return false;  
+    }
+    
+    Boolean binaryChange(String search, String Extext, int low, int high)
+    {    
+        if( high >= low){
+            int mid = low + (high - low) / 2;
+            if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) == 0){
+                Dictionary.container.get(mid).setWordExlain(Extext);
+                return true;
+            }
+            if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) > 0)
+                return binaryChange(search,Extext, mid + 1, high);
+            if (search.compareTo(Dictionary.container.get(mid).getWordTarget()) < 0)
+                return binaryChange(search,Extext , low, mid - 1);
+        }
+        return false;  
     }
     
     String dictionarySearcher(String search) {

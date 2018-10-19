@@ -67,7 +67,12 @@ public class DicFrame extends javax.swing.JFrame {
         Speak = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        GGT = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dictionary");
@@ -220,15 +225,35 @@ public class DicFrame extends javax.swing.JFrame {
         jLabel2.setText("Tiếng Việt");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 80, -1));
 
-        GGT.setText("GGT");
-        GGT.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 480));
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Add");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GGTActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        jPanel1.add(GGT, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, -1, -1));
+        jMenu1.add(jMenuItem1);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 480));
+        jMenuItem2.setText("Exit");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("jMenu3");
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -385,16 +410,22 @@ public class DicFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NewTextActionPerformed
 
-    private void GGTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GGTActionPerformed
-        if(!NewText.getText().equals("")){
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        System.exit(0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         try {
-            ExplainLable.setText(GoogleTranslate.translate("vi",NewText.getText()));
+            AddFrame abc = new AddFrame();
+            abc.setVisible(true);
+            tmpList.clear();
             // TODO add your handling code here:
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(rootPane,"Vui lòng kết nối mạng");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DicFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    }//GEN-LAST:event_GGTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,7 +468,6 @@ public class DicFrame extends javax.swing.JFrame {
     private javax.swing.JButton DeleteButton;
     private javax.swing.JButton ExitButton;
     private javax.swing.JLabel ExplainLable;
-    private javax.swing.JButton GGT;
     private javax.swing.JTextField NewText;
     private javax.swing.JButton Speak;
     private javax.swing.JList<String> TargetList;
@@ -445,6 +475,12 @@ public class DicFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

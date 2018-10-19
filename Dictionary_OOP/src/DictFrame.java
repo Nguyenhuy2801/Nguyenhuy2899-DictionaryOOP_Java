@@ -90,6 +90,7 @@ public class DictFrame extends javax.swing.JFrame {
         OutMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Từ điển Anh - Việt");
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -102,6 +103,8 @@ public class DictFrame extends javax.swing.JFrame {
         });
         jPanel1.add(HistoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 40, 40));
 
+        jScrollPane1.setToolTipText("");
+
         TargetList.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TargetList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,9 +113,10 @@ public class DictFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TargetList);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 240, 480));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 260, 490));
 
         Speak1.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-speaker-25.png")); // NOI18N
+        Speak1.setToolTipText("Phát âm");
         Speak1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Speak1ActionPerformed(evt);
@@ -121,6 +125,7 @@ public class DictFrame extends javax.swing.JFrame {
         jPanel1.add(Speak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 40, -1));
 
         Speak2.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-speaker-25.png")); // NOI18N
+        Speak2.setToolTipText("Phát âm");
         Speak2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Speak2ActionPerformed(evt);
@@ -303,13 +308,11 @@ public class DictFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

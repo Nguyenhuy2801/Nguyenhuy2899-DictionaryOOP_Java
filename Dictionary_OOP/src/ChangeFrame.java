@@ -94,7 +94,7 @@ public class ChangeFrame extends javax.swing.JFrame {
                 ChangeButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(ChangeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 60, 40));
+        jPanel1.add(ChangeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 60, 40));
 
         Exit.setBackground(new java.awt.Color(255, 255, 255));
         Exit.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-exit-40.png")); // NOI18N
