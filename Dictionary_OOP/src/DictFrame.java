@@ -19,6 +19,7 @@ public class DictFrame extends javax.swing.JFrame {
     DictionaryCommandline dict = new DictionaryCommandline();
     DefaultListModel<String> dlm = new DefaultListModel<>();
     DefaultListModel<String> hl = new DefaultListModel<>();
+    DefaultListModel<String> ahl = new DefaultListModel<>();
     /**
      * Creates new form DictFrame
      * @throws java.io.FileNotFoundException
@@ -26,8 +27,18 @@ public class DictFrame extends javax.swing.JFrame {
     public DictFrame() throws FileNotFoundException {
         initComponents();
         
-        AddButton.setVisible(false);
+        TargetLable.setVisible(false);
         ExplainText.setVisible(false);
+        DeleButton.setVisible(false);
+        AddButton.setVisible(false);
+        ChangeButton.setVisible(false);
+        TranOfButton.setVisible(false);
+        Speak1.setVisible(true);
+        Speak2.setVisible(true);
+        HistoryButton.setVisible(true);
+        TranOnButton.setVisible(true);
+        TargetText.setVisible(true);
+        ExplainLable.setVisible(true);
         
         this.setLocationRelativeTo(null);
         dict.dictionaryAdvanced();
@@ -55,23 +66,25 @@ public class DictFrame extends javax.swing.JFrame {
         TargetText = new javax.swing.JTextField();
         ExplainText = new javax.swing.JTextField();
         ExplainLable = new javax.swing.JLabel();
-        TranButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        TranOnButton = new javax.swing.JButton();
         AddButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        TargetLable = new javax.swing.JLabel();
         DeleButton = new javax.swing.JButton();
+        ChangeButton = new javax.swing.JButton();
+        TranOfButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         TranMenu = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        TranMenuItem = new javax.swing.JMenuItem();
+        TranOFFMenu = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        ThemTu = new javax.swing.JMenuItem();
+        AddWord = new javax.swing.JMenuItem();
         ChangeMenu = new javax.swing.JMenu();
         ChangMenu = new javax.swing.JMenuItem();
         RemoveMenu = new javax.swing.JMenu();
         DeleWord = new javax.swing.JMenuItem();
         HistoryMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        WordAdds = new javax.swing.JMenuItem();
         DeleHistory = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         OutMenu = new javax.swing.JMenuItem();
@@ -80,13 +93,14 @@ public class DictFrame extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        HistoryButton.setText("History");
+        HistoryButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-time-machine-40.png")); // NOI18N
+        HistoryButton.setToolTipText("Lịch sử");
         HistoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistoryButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(HistoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
+        jPanel1.add(HistoryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 40, 40));
 
         TargetList.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TargetList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,23 +110,23 @@ public class DictFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TargetList);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 220, 220, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 240, 480));
 
-        Speak1.setText("Speak1");
+        Speak1.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-speaker-25.png")); // NOI18N
         Speak1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Speak1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Speak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+        jPanel1.add(Speak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 40, -1));
 
-        Speak2.setText("Speak2");
+        Speak2.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-speaker-25.png")); // NOI18N
         Speak2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Speak2ActionPerformed(evt);
             }
         });
-        jPanel1.add(Speak2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, -1, -1));
+        jPanel1.add(Speak2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 40, -1));
 
         TargetText.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TargetText.addActionListener(new java.awt.event.ActionListener() {
@@ -125,75 +139,108 @@ public class DictFrame extends javax.swing.JFrame {
                 TargetTextKeyReleased(evt);
             }
         });
-        jPanel1.add(TargetText, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 69, 330, 108));
-
-        ExplainText.setText("Explain");
-        jPanel1.add(ExplainText, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 310, 108));
+        jPanel1.add(TargetText, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 300, 60));
+        jPanel1.add(ExplainText, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 300, 350));
 
         ExplainLable.setBackground(new java.awt.Color(255, 255, 255));
         ExplainLable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ExplainLable.setOpaque(true);
-        jPanel1.add(ExplainLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 69, 310, 108));
+        jPanel1.add(ExplainLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 300, 350));
 
-        TranButton.setText("Translate");
-        TranButton.addActionListener(new java.awt.event.ActionListener() {
+        TranOnButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-search-40.png")); // NOI18N
+        TranOnButton.setToolTipText("Dịch");
+        TranOnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TranButtonActionPerformed(evt);
+                TranOnButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(TranButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 112, -1, -1));
+        jPanel1.add(TranOnButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Tiếng Anh");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 90, 20));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Tiếng Việt");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, -1, -1));
-
-        AddButton.setText("Add");
+        AddButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-plus-40.png")); // NOI18N
+        AddButton.setToolTipText("Thêm từ");
         AddButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(AddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, -1, -1));
+        jPanel1.add(AddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("jLabel3");
-        jLabel3.setOpaque(true);
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 310, 110));
+        TargetLable.setBackground(new java.awt.Color(255, 255, 255));
+        TargetLable.setOpaque(true);
+        jPanel1.add(TargetLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 300, 60));
 
-        DeleButton.setText("Dele");
+        DeleButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-trash-40.png")); // NOI18N
+        DeleButton.setToolTipText("Xóa từ");
         DeleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(DeleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 70, 40));
+        jPanel1.add(DeleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
+
+        ChangeButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-synchronize-40.png")); // NOI18N
+        ChangeButton.setToolTipText("Sửa từ");
+        ChangeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ChangeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
+
+        TranOfButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-search-40.png")); // NOI18N
+        TranOfButton.setToolTipText("Dịch");
+        TranOfButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TranOfButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(TranOfButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
 
         TranMenu.setText("Tra từ");
 
-        jMenuItem2.setText("jMenuItem2");
-        TranMenu.add(jMenuItem2);
+        TranMenuItem.setText("Từ điển online");
+        TranMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TranMenuItemActionPerformed(evt);
+            }
+        });
+        TranMenu.add(TranMenuItem);
+
+        TranOFFMenu.setText("Từ điển offline");
+        TranOFFMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TranOFFMenuMouseClicked(evt);
+            }
+        });
+        TranOFFMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TranOFFMenuActionPerformed(evt);
+            }
+        });
+        TranMenu.add(TranOFFMenu);
 
         jMenuBar1.add(TranMenu);
 
         jMenu1.setText("Thêm từ");
 
-        ThemTu.setText("Thêm từ mới");
-        ThemTu.addActionListener(new java.awt.event.ActionListener() {
+        AddWord.setText("Thêm từ mới");
+        AddWord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ThemTuActionPerformed(evt);
+                AddWordActionPerformed(evt);
             }
         });
-        jMenu1.add(ThemTu);
+        jMenu1.add(AddWord);
 
         jMenuBar1.add(jMenu1);
 
         ChangeMenu.setText("Sửa từ");
 
         ChangMenu.setText("Sửa từ");
+        ChangMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangMenuActionPerformed(evt);
+            }
+        });
         ChangeMenu.add(ChangMenu);
 
         jMenuBar1.add(ChangeMenu);
@@ -201,19 +248,32 @@ public class DictFrame extends javax.swing.JFrame {
         RemoveMenu.setText("Xóa từ");
 
         DeleWord.setText("Xóa từ");
+        DeleWord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleWordActionPerformed(evt);
+            }
+        });
         RemoveMenu.add(DeleWord);
 
         jMenuBar1.add(RemoveMenu);
 
         HistoryMenu.setText("Lịch sử ");
 
-        jMenuItem1.setText("Xem lịch sử");
+        jMenuItem1.setText("Các từ đã tra");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
         HistoryMenu.add(jMenuItem1);
+
+        WordAdds.setText("Các từ đã thêm");
+        WordAdds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WordAddsActionPerformed(evt);
+            }
+        });
+        HistoryMenu.add(WordAdds);
 
         DeleHistory.setText("Xóa lịch sử");
         DeleHistory.addActionListener(new java.awt.event.ActionListener() {
@@ -247,7 +307,9 @@ public class DictFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -322,13 +384,11 @@ public class DictFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Speak2ActionPerformed
 
-    private void TranButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TranButtonActionPerformed
+    private void TranOnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TranOnButtonActionPerformed
         if (!TargetText.getText().equals("")) {
             try {
             ExplainLable.setText(GoogleTranslate.translate("vi",TargetText.getText()));
-            // TODO add your handling code here:
         } catch (IOException ex) {
-            ExplainLable.setText(dict.binaryLookup(TargetText.getText(), 0, Dictionary.container.size() - 1));
             JOptionPane.showMessageDialog(rootPane,"Vui lòng kết nối mạng");
         }    
             for(int i = 0; i < hl.size(); i++){
@@ -342,7 +402,7 @@ public class DictFrame extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(rootPane,"Vui lòng nhập từ");
         }
-    }//GEN-LAST:event_TranButtonActionPerformed
+    }//GEN-LAST:event_TranOnButtonActionPerformed
 
     private void HistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoryButtonActionPerformed
        if(hl.isEmpty()){
@@ -372,12 +432,20 @@ public class DictFrame extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void ThemTuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemTuActionPerformed
-        TranButton.setVisible(false);
+    private void AddWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddWordActionPerformed
+        TargetLable.setVisible(false);
         ExplainLable.setVisible(false);
+        TranOnButton.setVisible(false);
+        TranOfButton.setVisible(false);
+        HistoryButton.setVisible(false);
+        DeleButton.setVisible(false);
+        ChangeButton.setVisible(false);
+        Speak1.setVisible(false);
+        Speak2.setVisible(false);
         AddButton.setVisible(true);
+        TargetText.setVisible(true);
         ExplainText.setVisible(true);
-    }//GEN-LAST:event_ThemTuActionPerformed
+    }//GEN-LAST:event_AddWordActionPerformed
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         if(!TargetText.getText().equals("") && !ExplainText.getText().equals("")){
@@ -392,6 +460,13 @@ public class DictFrame extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(rootPane,"Yêu cầu nhập đủ cả từ và nghĩa");
         }
+        try {
+            dict.dictionaryExportToFile();
+        } catch (IOException ex) {
+            Logger.getLogger(DictFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ahl.addElement(TargetText.getText());
+        TargetList.setModel(ahl);
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void DeleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleButtonActionPerformed
@@ -408,16 +483,113 @@ public class DictFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Không xóa");
             }
         }
-    }//GEN-LAST:event_DeleButtonActionPerformed
-
-    private void OutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutMenuActionPerformed
         try {
             dict.dictionaryExportToFile();
         } catch (IOException ex) {
             Logger.getLogger(DictFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_DeleButtonActionPerformed
+
+    private void OutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutMenuActionPerformed
         System.exit(0);
     }//GEN-LAST:event_OutMenuActionPerformed
+
+    private void ChangMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangMenuActionPerformed
+        TargetLable.setVisible(false);
+        ExplainLable.setVisible(false);
+        TranOnButton.setVisible(false);
+        TranOfButton.setVisible(false);
+        AddButton.setVisible(false);
+        DeleButton.setVisible(false);
+        Speak1.setVisible(false);
+        Speak2.setVisible(false);
+        HistoryButton.setVisible(false);
+        ChangeButton.setVisible(true);
+        TargetText.setVisible(true);
+        ExplainText.setVisible(true);
+    }//GEN-LAST:event_ChangMenuActionPerformed
+
+    private void WordAddsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WordAddsActionPerformed
+        if(ahl.isEmpty()){
+           JOptionPane.showMessageDialog(rootPane, "Chưa có từ thêm mới");
+       }
+       else{
+        TargetList.setModel(ahl);
+       }
+    }//GEN-LAST:event_WordAddsActionPerformed
+
+    private void TranMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TranMenuItemActionPerformed
+        TargetLable.setVisible(false);
+        ExplainText.setVisible(false);
+        DeleButton.setVisible(false);
+        AddButton.setVisible(false);
+        ChangeButton.setVisible(false);
+        TranOfButton.setVisible(false);
+        Speak1.setVisible(true);
+        Speak2.setVisible(true);
+        HistoryButton.setVisible(true);
+        TranOnButton.setVisible(true);
+        TargetText.setVisible(true);
+        ExplainLable.setVisible(true);
+    }//GEN-LAST:event_TranMenuItemActionPerformed
+
+    private void DeleWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleWordActionPerformed
+        TargetLable.setVisible(false);
+        ExplainText.setVisible(false);
+        TranOnButton.setVisible(false);
+        TranOfButton.setVisible(false);
+        ChangeButton.setVisible(false);
+        AddButton.setVisible(false);
+        Speak1.setVisible(false);
+        Speak2.setVisible(false);
+        HistoryButton.setVisible(false);
+        DeleButton.setVisible(true);
+        ExplainLable.setVisible(true);
+        TargetText.setVisible(true);
+    }//GEN-LAST:event_DeleWordActionPerformed
+
+    private void ChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeButtonActionPerformed
+            if(TargetText.getText().equals("")){
+               JOptionPane.showMessageDialog(rootPane, "Chọn từ muốn thay đổi");
+            }
+            else if(dict.binaryChange(TargetText.getText(),ExplainText.getText(), 0, Dictionary.container.size() - 1)){
+                
+                JOptionPane.showMessageDialog(rootPane, "Bạn vừa thay đổi từ "+ TargetText.getText());
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Thay đổi thất bại.");
+            }
+        try {
+            dict.dictionaryExportToFile();
+            // TODO add your handling code here:
+        } catch (IOException ex) {
+            Logger.getLogger(ChangeFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ChangeButtonActionPerformed
+
+    private void TranOfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TranOfButtonActionPerformed
+        ExplainLable.setText(dict.binaryLookup(TargetText.getText(), 0, Dictionary.container.size() - 1));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TranOfButtonActionPerformed
+
+    private void TranOFFMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TranOFFMenuActionPerformed
+          TargetLable.setVisible(false);
+        ExplainText.setVisible(false);
+        DeleButton.setVisible(false);
+        AddButton.setVisible(false);
+        ChangeButton.setVisible(false);
+        Speak1.setVisible(true);
+        Speak2.setVisible(true);
+        HistoryButton.setVisible(true);
+        TranOnButton.setVisible(false);
+        TranOfButton.setVisible(true);
+        TargetText.setVisible(true);
+        ExplainLable.setVisible(true);
+    }//GEN-LAST:event_TranOFFMenuActionPerformed
+
+    private void TranOFFMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TranOFFMenuMouseClicked
+
+    }//GEN-LAST:event_TranOFFMenuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -460,7 +632,9 @@ public class DictFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
+    private javax.swing.JMenuItem AddWord;
     private javax.swing.JMenuItem ChangMenu;
+    private javax.swing.JButton ChangeButton;
     private javax.swing.JMenu ChangeMenu;
     private javax.swing.JButton DeleButton;
     private javax.swing.JMenuItem DeleHistory;
@@ -473,19 +647,19 @@ public class DictFrame extends javax.swing.JFrame {
     private javax.swing.JMenu RemoveMenu;
     private javax.swing.JButton Speak1;
     private javax.swing.JButton Speak2;
+    private javax.swing.JLabel TargetLable;
     private javax.swing.JList<String> TargetList;
     private javax.swing.JTextField TargetText;
-    private javax.swing.JMenuItem ThemTu;
-    private javax.swing.JButton TranButton;
     private javax.swing.JMenu TranMenu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem TranMenuItem;
+    private javax.swing.JMenuItem TranOFFMenu;
+    private javax.swing.JButton TranOfButton;
+    private javax.swing.JButton TranOnButton;
+    private javax.swing.JMenuItem WordAdds;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
