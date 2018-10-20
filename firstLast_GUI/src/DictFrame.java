@@ -93,7 +93,7 @@ public class DictFrame extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        HistoryButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-time-machine-40.png")); // NOI18N
+        HistoryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-time-machine-40.png"))); // NOI18N
         HistoryButton.setToolTipText("Lịch sử");
         HistoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +114,7 @@ public class DictFrame extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 260, 490));
 
-        Speak1.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-speaker-25.png")); // NOI18N
+        Speak1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-speaker-25.png"))); // NOI18N
         Speak1.setToolTipText("Phát âm");
         Speak1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +123,7 @@ public class DictFrame extends javax.swing.JFrame {
         });
         jPanel1.add(Speak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 40, -1));
 
-        Speak2.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-speaker-25.png")); // NOI18N
+        Speak2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-speaker-25.png"))); // NOI18N
         Speak2.setToolTipText("Phát âm");
         Speak2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +151,7 @@ public class DictFrame extends javax.swing.JFrame {
         ExplainLable.setOpaque(true);
         jPanel1.add(ExplainLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 300, 350));
 
-        TranOnButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-search-40.png")); // NOI18N
+        TranOnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-search-40.png"))); // NOI18N
         TranOnButton.setToolTipText("Dịch");
         TranOnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +160,7 @@ public class DictFrame extends javax.swing.JFrame {
         });
         jPanel1.add(TranOnButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
 
-        AddButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-plus-40.png")); // NOI18N
+        AddButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-plus-40.png"))); // NOI18N
         AddButton.setToolTipText("Thêm từ");
         AddButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +169,7 @@ public class DictFrame extends javax.swing.JFrame {
         });
         jPanel1.add(AddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
 
-        DeleButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-trash-40.png")); // NOI18N
+        DeleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-trash-40.png"))); // NOI18N
         DeleButton.setToolTipText("Xóa từ");
         DeleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,7 +178,7 @@ public class DictFrame extends javax.swing.JFrame {
         });
         jPanel1.add(DeleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
 
-        ChangeButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-synchronize-40.png")); // NOI18N
+        ChangeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-synchronize-40.png"))); // NOI18N
         ChangeButton.setToolTipText("Sửa từ");
         ChangeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +187,7 @@ public class DictFrame extends javax.swing.JFrame {
         });
         jPanel1.add(ChangeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
 
-        TranOfButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-search-40.png")); // NOI18N
+        TranOfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-search-40.png"))); // NOI18N
         TranOfButton.setToolTipText("Dịch");
         TranOfButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
