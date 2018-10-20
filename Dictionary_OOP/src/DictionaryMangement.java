@@ -129,7 +129,7 @@ public class DictionaryMangement  {
         }
         fileWriter.close();
     }
-     Boolean removeSingleWordFromCommanline(String search)
+    Boolean removeSingleWordFromCommanline(String search)
     {
         search = search.toLowerCase();
         for (Word word : Dictionary.container)

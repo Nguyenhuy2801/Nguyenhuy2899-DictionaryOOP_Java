@@ -9,6 +9,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.lang.*;
 import java.util.Collection;
+import java.util.Collections;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 /**
@@ -27,7 +28,6 @@ public class DictFrame extends javax.swing.JFrame {
     public DictFrame() throws FileNotFoundException {
         initComponents();
         
-        TargetLable.setVisible(false);
         ExplainText.setVisible(false);
         DeleButton.setVisible(false);
         AddButton.setVisible(false);
@@ -68,7 +68,6 @@ public class DictFrame extends javax.swing.JFrame {
         ExplainLable = new javax.swing.JLabel();
         TranOnButton = new javax.swing.JButton();
         AddButton = new javax.swing.JButton();
-        TargetLable = new javax.swing.JLabel();
         DeleButton = new javax.swing.JButton();
         ChangeButton = new javax.swing.JButton();
         TranOfButton = new javax.swing.JButton();
@@ -169,10 +168,6 @@ public class DictFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(AddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 40, 40));
-
-        TargetLable.setBackground(new java.awt.Color(255, 255, 255));
-        TargetLable.setOpaque(true);
-        jPanel1.add(TargetLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 300, 60));
 
         DeleButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\nguyenhuy\\Downloads\\icons8-trash-40.png")); // NOI18N
         DeleButton.setToolTipText("Xóa từ");
@@ -436,7 +431,6 @@ public class DictFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void AddWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddWordActionPerformed
-        TargetLable.setVisible(false);
         ExplainLable.setVisible(false);
         TranOnButton.setVisible(false);
         TranOfButton.setVisible(false);
@@ -468,6 +462,7 @@ public class DictFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(DictFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Collections.sort(Dictionary.container);
         ahl.addElement(TargetText.getText());
         TargetList.setModel(ahl);
     }//GEN-LAST:event_AddButtonActionPerformed
@@ -498,7 +493,7 @@ public class DictFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_OutMenuActionPerformed
 
     private void ChangMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangMenuActionPerformed
-        TargetLable.setVisible(false);
+
         ExplainLable.setVisible(false);
         TranOnButton.setVisible(false);
         TranOfButton.setVisible(false);
@@ -522,7 +517,6 @@ public class DictFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_WordAddsActionPerformed
 
     private void TranMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TranMenuItemActionPerformed
-        TargetLable.setVisible(false);
         ExplainText.setVisible(false);
         DeleButton.setVisible(false);
         AddButton.setVisible(false);
@@ -537,7 +531,7 @@ public class DictFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_TranMenuItemActionPerformed
 
     private void DeleWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleWordActionPerformed
-        TargetLable.setVisible(false);
+
         ExplainText.setVisible(false);
         TranOnButton.setVisible(false);
         TranOfButton.setVisible(false);
@@ -566,17 +560,27 @@ public class DictFrame extends javax.swing.JFrame {
             dict.dictionaryExportToFile();
             // TODO add your handling code here:
         } catch (IOException ex) {
-            Logger.getLogger(ChangeFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DictFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_ChangeButtonActionPerformed
 
     private void TranOfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TranOfButtonActionPerformed
-        ExplainLable.setText(dict.binaryLookup(TargetText.getText(), 0, Dictionary.container.size() - 1));
+        if (!TargetText.getText().equals("")) {
+            ExplainLable.setText(dict.binaryLookup(TargetText.getText(), 0, Dictionary.container.size() - 1));
+            for(int i = 0; i < hl.size(); i++){
+                if(hl.get(i).equals(TargetText.getText())){
+                    hl.remove(i);
+                    break;
+                }
+            }
+            hl.addElement(TargetText.getText());
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_TranOfButtonActionPerformed
 
     private void TranOFFMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TranOFFMenuActionPerformed
-          TargetLable.setVisible(false);
+
         ExplainText.setVisible(false);
         DeleButton.setVisible(false);
         AddButton.setVisible(false);
@@ -597,41 +601,42 @@ public class DictFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DictFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DictFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DictFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DictFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new DictFrame().setVisible(true);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(DictFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+    
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(DictFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(DictFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(DictFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(DictFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    new DictFrame().setVisible(true);
+//                } catch (FileNotFoundException ex) {
+//                    Logger.getLogger(DictFrame.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
@@ -650,7 +655,6 @@ public class DictFrame extends javax.swing.JFrame {
     private javax.swing.JMenu RemoveMenu;
     private javax.swing.JButton Speak1;
     private javax.swing.JButton Speak2;
-    private javax.swing.JLabel TargetLable;
     private javax.swing.JList<String> TargetList;
     private javax.swing.JTextField TargetText;
     private javax.swing.JMenu TranMenu;
